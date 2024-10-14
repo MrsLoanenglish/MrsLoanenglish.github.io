@@ -30,7 +30,7 @@ fetch(url)
                 class5.push(columns[4].replace(/['"]/g, '').trim());
             }
         });
-        console.log("Dữ liệu được lưu thành công vào localStorage!");
+        //console.log("Dữ liệu được lưu thành công vào localStorage!");
         isDataLoaded = true; // Đặt cờ khi dữ liệu được tải
     })
     .catch(error => {
@@ -54,7 +54,7 @@ let wordToPronounce = wordToPronounceElement.innerText;
 let wordList = [];
 classSelect.addEventListener('change', (event) => {
         if (!isDataLoaded) { // Kiểm tra xem dữ liệu đã tải chưa
-        console.log("Dữ liệu chưa được tải!");
+        //console.log("Dữ liệu chưa được tải!");
         return;
     }
     const selectedClass = event.target.value;
@@ -205,7 +205,7 @@ async function sendMessage() {
 
     if (response.ok) {
         const data = await response.json();
-        console.log('Message sent successfully:', data);
+        //console.log('Message sent successfully:', data);
     } else {
         console.error('Error sending message:', response.statusText);
     }

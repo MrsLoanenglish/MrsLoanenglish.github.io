@@ -1,11 +1,57 @@
-  
-//các mảng được lưu từ (sửa tay)
-let class1 = ['waves', 'lift', 'motive', 'concur', 'Let go', 'pronunciation', 'time'];
-let class2 = ['Got it', 'Fear', 'have not', 'Softer', 'centimental'];
-let class3 = ['Put it', 'pretend', 'swallow', 'expensive', 'exclusive'];
-let class4 = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'wave', 'swimming pool', 'ticket', 'cinema', 'stairs', 'balcony', 'lift'];
-let class5 = ['grocery', 'restaurant', 'cathedral', 'theatre', 'square', 'railway station', 'art gallery'];
-//
+
+
+
+// URL của Google Sheet CSV
+const sheetId = '1ULpKy8M10z9PG8IElWkAcaHG_Hd0u_Bu57GYGBBCBh4'; // Thay YOUR_GOOGLE_SHEET_ID bằng ID Google Sheet của bạn
+const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
+
+//nạp từ ggsheet
+fetch(url)
+    .then(response => response.text())
+    .then(csvData => {
+        const rows = csvData.split('\n').slice(1); // Bỏ dòng tiêu đề
+// Hàm lấy dữ liệu từ Google Sheet CSV
+fetch(url)
+    .then(response => response.text())
+    .then(csvData => {
+        const rows = csvData.split('\n').slice(1); // Bỏ dòng tiêu đề
+        
+        // Tạo các mảng cho các class
+        let class1 = [];
+        let class2 = [];
+        let class3 = [];
+        let class4 = [];
+        let class5 = [];
+
+        // Duyệt qua từng hàng của CSV
+        rows.forEach(row => {
+            const columns = row.split(',');
+            
+            // Chia dữ liệu thành các cột tương ứng với từng class
+            if (columns.length >= 5) { // Kiểm tra đủ 5 cột dữ liệu
+                class1.push(columns[0].trim());
+                class2.push(columns[1].trim());
+                class3.push(columns[2].trim());
+                class4.push(columns[3].trim());
+                class5.push(columns[4].trim());
+            }
+        });
+
+        // Lưu dữ liệu vào localStorage để sử dụng sau này
+        localStorage.setItem('class1', JSON.stringify(class1));
+        localStorage.setItem('class2', JSON.stringify(class2));
+        localStorage.setItem('class3', JSON.stringify(class3));
+        localStorage.setItem('class4', JSON.stringify(class4));
+        localStorage.setItem('class5', JSON.stringify(class5));
+
+        console.log("Dữ liệu được lưu thành công vào localStorage!");
+
+        // Ví dụ: sử dụng dữ liệu từ class1 để hiển thị hoặc thao tác
+        console.log("Class 1 Data: ", class1);
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
 
 
 

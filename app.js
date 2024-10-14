@@ -4,19 +4,19 @@
 // URL của Google Sheet CSV
 const sheetId = '1ULpKy8M10z9PG8IElWkAcaHG_Hd0u_Bu57GYGBBCBh4'; // Thay YOUR_GOOGLE_SHEET_ID bằng ID Google Sheet của bạn
 const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
+        
+// Tạo các mảng cho các class
+let class1 = [];
+let class2 = [];
+let class3 = [];
+let class4 = [];
+let class5 = [];
+
 // Hàm lấy dữ liệu từ Google Sheet CSV
 fetch(url)
     .then(response => response.text())
     .then(csvData => {
         const rows = csvData.split('\n').slice(1); // Bỏ dòng tiêu đề
-        
-        // Tạo các mảng cho các class
-        let class1 = [];
-        let class2 = [];
-        let class3 = [];
-        let class4 = [];
-        let class5 = [];
-
         // Duyệt qua từng hàng của CSV
         rows.forEach(row => {
             const columns = row.split(',');

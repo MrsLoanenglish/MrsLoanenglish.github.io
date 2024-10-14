@@ -23,11 +23,11 @@ fetch(url)
             
             // Chia dữ liệu thành các cột tương ứng với từng class
             if (columns.length >= 5) { // Kiểm tra đủ 5 cột dữ liệu
-                class1.push(columns[0].trim());
-                class2.push(columns[1].trim());
-                class3.push(columns[2].trim());
-                class4.push(columns[3].trim());
-                class5.push(columns[4].trim());
+                class1.push(columns[0].replace(/['"]/g, '').trim());
+                class2.push(columns[1].replace(/['"]/g, '').trim());
+                class3.push(columns[2].replace(/['"]/g, '').trim());
+                class4.push(columns[3].replace(/['"]/g, '').trim());
+                class5.push(columns[4].replace(/['"]/g, '').trim());
             }
         });
         console.log("Dữ liệu được lưu thành công vào localStorage!");

@@ -4,12 +4,6 @@
 // URL của Google Sheet CSV
 const sheetId = '1ULpKy8M10z9PG8IElWkAcaHG_Hd0u_Bu57GYGBBCBh4'; // Thay YOUR_GOOGLE_SHEET_ID bằng ID Google Sheet của bạn
 const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
-
-//nạp từ ggsheet
-fetch(url)
-    .then(response => response.text())
-    .then(csvData => {
-        const rows = csvData.split('\n').slice(1); // Bỏ dòng tiêu đề
 // Hàm lấy dữ liệu từ Google Sheet CSV
 fetch(url)
     .then(response => response.text())

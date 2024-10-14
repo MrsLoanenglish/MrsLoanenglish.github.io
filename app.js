@@ -11,7 +11,7 @@ let class2 = [];
 let class3 = [];
 let class4 = [];
 let class5 = [];
-
+let isDataLoaded = false; // Thêm cờ đánh dấu khi dữ liệu được tải
 // Hàm lấy dữ liệu từ Google Sheet CSV
 fetch(url)
     .then(response => response.text())
@@ -30,72 +30,13 @@ fetch(url)
                 class5.push(columns[4].trim());
             }
         });
-
-        // Lưu dữ liệu vào localStorage để sử dụng sau này
-        localStorage.setItem('class1', JSON.stringify(class1));
-        localStorage.setItem('class2', JSON.stringify(class2));
-        localStorage.setItem('class3', JSON.stringify(class3));
-        localStorage.setItem('class4', JSON.stringify(class4));
-        localStorage.setItem('class5', JSON.stringify(class5));
-
         console.log("Dữ liệu được lưu thành công vào localStorage!");
-
-        // Ví dụ: sử dụng dữ liệu từ class1 để hiển thị hoặc thao tác
-        console.log("Class 1 Data: ", class1);
+        isDataLoaded = true; // Đặt cờ khi dữ liệu được tải
     })
     .catch(error => {
         console.error('Error fetching data:', error);
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const referrer = document.referrer;
-
-        // Kiểm tra xem referrer có phải là Trang A hay không
-        if (referrer === 'http://mrsloanenglish.atwebpages.com/') {
-            // Hiển thị nội dung nếu đến từ Trang A
-            //document.body.style.display = 'block';
-        } else {
-            // Nếu không, điều hướng về Trang A hoặc hiển thị cảnh báo
-            //alert('Vui lòng đăng nhập !');
-            //window.location.href = 'http://mrsloanenglish.atwebpages.com/';
-        }
-
-
-
-
-localStorage.setItem('class1', JSON.stringify(class1));
-localStorage.setItem('class2', JSON.stringify(class2));
-localStorage.setItem('class3', JSON.stringify(class3));
-localStorage.setItem('class4', JSON.stringify(class4));
-localStorage.setItem('class5', JSON.stringify(class5));
-
-let storedClass1 = JSON.parse(localStorage.getItem('class1'));
-let storedClass2 = JSON.parse(localStorage.getItem('class2'));
-let storedClass3 = JSON.parse(localStorage.getItem('class3'));
-let storedClass4 = JSON.parse(localStorage.getItem('class4'));
-let storedClass5 = JSON.parse(localStorage.getItem('class5'));
 const speakButton = document.getElementById('speakButton');
 const stopButton = document.getElementById('stopButton');
 const classSelect = document.getElementById('standard-select');
@@ -112,24 +53,28 @@ let wordToPronounce = wordToPronounceElement.innerText;
 // Mảng các từ đã lưu sẵn (sửa tay)
 let wordList = [];
 classSelect.addEventListener('change', (event) => {
+        if (!isDataLoaded) { // Kiểm tra xem dữ liệu đã tải chưa
+        console.log("Dữ liệu chưa được tải!");
+        return;
+    }
     const selectedClass = event.target.value;
 
     // Đặt màu nền tùy theo giá trị đã chọn
     switch (selectedClass) {
         case '1':  // Class 1
-            wordList= storedClass1;
+            wordList= class1;
             break;
         case '2':  // Class 2
-            wordList= storedClass2;
+            wordList= class2;
             break;
         case '3':  // Class 3
-            wordList= storedClass3;
+            wordList= class3;
             break;
         case '4':  // Class 4
-            wordList= storedClass4;
+            wordList= class4;
             break;
         case '5':  // Class 5
-            wordList= storedClass5;
+            wordList= class5;
             break;
         default:   // Mặc định không đổi màu
             wordList= [];
@@ -214,9 +159,6 @@ changeWordButton.addEventListener('click', () => {
         showCustomAlert();
         return;
     }
-    // Lấy ngẫu nhiên một từ từ danh sách wordList
-    //const randomIndex = Math.floor(Math.random() * wordList.length);
-    //wordToPronounce = wordList[randomIndex];
     // Ví dụ gọi hàm để lấy từ tiếp theo
     getNextWord();
     // Cập nhật nội dung của thẻ h2

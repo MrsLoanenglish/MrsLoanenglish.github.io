@@ -310,11 +310,4 @@ function showCustomAlert() {
         document.getElementById('customAlert').style.display = 'none';
         document.getElementById('overlay').style.display = 'none';
     }
-function checkImageSource() {
-    const imgElement = document.getElementById('img_topronounce');
-    if (!imgElement.src || imgElement.src === '') {
-        imgElement.style.display = 'none';  // Ẩn ảnh nếu không có src
-    } else {
-        imgElement.style.display = 'block';  // Hiển thị lại ảnh nếu có src
-    }
-}
+

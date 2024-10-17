@@ -200,7 +200,7 @@ recognition.onresult = function(event) {
     const score = (correctWords / wordsToPronounce.length) * 10;
     resultDiv.innerHTML += `<br>Your Point: <b>${score.toFixed(1)}/10</b>`;
     message = `${studentname}: ${score.toFixed(1)}đ : (${transcript} / ${wordToPronounce} )`
-    sendMessage();
+    //sendMessage();
 
     // Đưa ra phản hồi dựa trên điểm
     if (score === 10) {
@@ -260,28 +260,6 @@ function speak(text) {
     responsiveVoice.speak(text, "US English Female");
 }
 
-// Hàm gửi tin nhắn
-async function sendMessage() {
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-        }),
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-        //console.log('Message sent successfully:', data);
-    } else {
-        console.error('Error sending message:', response.statusText);
-    }
-}
 function showCustomAlert() {
         document.getElementById('customAlert').style.display = 'block';
         document.getElementById('overlay').style.display = 'block';

@@ -71,8 +71,6 @@ const changeWordButton = document.getElementById('changeWordButton'); // Nút đ
 const resultDiv = document.getElementById('result');
 const wordToPronounceElement = document.getElementById('wordToPronounce');
 const imgElement = document.getElementById('img_topronounce');
-const botToken = '5804977775:AAEZ-ag6Be9-8Qb3QUmpuoeceEQtlsEz3tM';  // Thay bằng token từ BotFather
-const chatId = '-4529879312';      // Thay bằng chat_id của người nhận
 let message = 'Duongcheck!';
 let wordToPronounce = wordToPronounceElement.innerText;
 // Mảng các từ đã lưu sẵn (sửa tay)

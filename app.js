@@ -38,41 +38,25 @@ fetch(url)
     .then(response => response.text())
     .then(csvData => {
         const rows = csvData.split('\n').slice(1); // Bỏ dòng tiêu đề
+        const classes = [class1, class2, class3, class4, class5, class6, class7, class8, class9, class10, class11, class12, classielst];
+        const images = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, imageielst];
+
         // Duyệt qua từng hàng của CSV
         rows.forEach(row => {
             const columns = row.split(',');
-            
-            // Chia dữ liệu thành các cột tương ứng với từng class
-            if (columns.length >= 5) { // Kiểm tra đủ 5 cột dữ liệu
-                class1.push(columns[0].replace(/['"]/g, '').trim());
-                class2.push(columns[2].replace(/['"]/g, '').trim());
-                class3.push(columns[4].replace(/['"]/g, '').trim());
-                class4.push(columns[6].replace(/['"]/g, '').trim());
-                class5.push(columns[8].replace(/['"]/g, '').trim());
-                class6.push(columns[10].replace(/['"]/g, '').trim());
-                class7.push(columns[12].replace(/['"]/g, '').trim());
-                class8.push(columns[14].replace(/['"]/g, '').trim());
-                class9.push(columns[16].replace(/['"]/g, '').trim());
-                class10.push(columns[18].replace(/['"]/g, '').trim());
-                class11.push(columns[20].replace(/['"]/g, '').trim());
-                class12.push(columns[22].replace(/['"]/g, '').trim());
-                classielst.push(columns[24].replace(/['"]/g, '').trim());
-                image1.push(columns[1].replace(/['"]/g, '').trim());
-                image2.push(columns[3].replace(/['"]/g, '').trim());
-                image3.push(columns[5].replace(/['"]/g, '').trim());
-                image4.push(columns[7].replace(/['"]/g, '').trim());
-                image5.push(columns[9].replace(/['"]/g, '').trim());
-                image6.push(columns[11].replace(/['"]/g, '').trim());
-                image7.push(columns[13].replace(/['"]/g, '').trim());
-                image8.push(columns[15].replace(/['"]/g, '').trim());
-                image9.push(columns[17].replace(/['"]/g, '').trim());
-                image10.push(columns[19].replace(/['"]/g, '').trim());
-                image11.push(columns[21].replace(/['"]/g, '').trim());
-                image12.push(columns[23].replace(/['"]/g, '').trim());
-                imageielst.push(columns[25].replace(/['"]/g, '').trim());
+
+            if (columns.length >= 26) { // Kiểm tra đủ số lượng cột
+                for (let i = 0; i < 13; i++) { // Có 13 class và 13 images
+                    const classValue = columns[i * 2].replace(/['"]/g, '').trim(); // Cột class
+                    const imageValue = columns[i * 2 + 1].replace(/['"]/g, '').trim(); // Cột image
+                    
+                    // Chỉ thêm nếu không rỗng
+                    if (classValue) classes[i].push(classValue);
+                    if (imageValue) images[i].push(imageValue);
+                }
             }
         });
-        //console.log("Dữ liệu được lưu thành công vào localStorage!");
+
         isDataLoaded = true; // Đặt cờ khi dữ liệu được tải
     })
     .catch(error => {
@@ -90,9 +74,7 @@ const imgElement = document.getElementById('img_topronounce');
 const botToken = '5804977775:AAEZ-ag6Be9-8Qb3QUmpuoeceEQtlsEz3tM';  // Thay bằng token từ BotFather
 const chatId = '-4529879312';      // Thay bằng chat_id của người nhận
 let message = 'Duongcheck!';
-
 let wordToPronounce = wordToPronounceElement.innerText;
-
 // Mảng các từ đã lưu sẵn (sửa tay)
 let wordList = [];
 let imgList = [];
@@ -309,4 +291,3 @@ function showCustomAlert() {
         document.getElementById('customAlert').style.display = 'none';
         document.getElementById('overlay').style.display = 'none';
     }
-

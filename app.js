@@ -261,6 +261,7 @@ let currentIndex_img = 0;
 function getNextImg() {
     imgElement.src = imgList[currentIndex_img];
     currentIndex_img = (currentIndex_img + 1) % imgList.length; // Khi đến hết danh sách, quay lại từ đầu
+    checkImageSource();
 }
 
 function getNextWord() {
@@ -309,3 +310,11 @@ function showCustomAlert() {
         document.getElementById('customAlert').style.display = 'none';
         document.getElementById('overlay').style.display = 'none';
     }
+function checkImageSource() {
+    const imgElement = document.getElementById('img_topronounce');
+    if (!imgElement.src || imgElement.src === '') {
+        imgElement.style.display = 'none';  // Ẩn ảnh nếu không có src
+    } else {
+        imgElement.style.display = 'block';  // Hiển thị lại ảnh nếu có src
+    }
+}

@@ -261,7 +261,6 @@ let currentIndex_img = 0;
 function getNextImg() {
     imgElement.src = imgList[currentIndex_img];
     currentIndex_img = (currentIndex_img + 1) % imgList.length; // Khi đến hết danh sách, quay lại từ đầu
-    checkImageSource();
 }
 
 function getNextWord() {
